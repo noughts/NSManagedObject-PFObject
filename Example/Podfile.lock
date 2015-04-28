@@ -1,0 +1,20 @@
+PODS:
+  - Expecta (0.4.2)
+  - NSManagedObject-PFObject (0.1.0)
+  - Specta (0.5.0)
+
+DEPENDENCIES:
+  - Expecta
+  - NSManagedObject-PFObject (from `../`)
+  - Specta
+
+EXTERNAL SOURCES:
+  NSManagedObject-PFObject:
+    :path: ../
+
+SPEC CHECKSUMS:
+  Expecta: 78b4e8b0c8291fa4524d7f74016b6065c2e391ec
+  NSManagedObject-PFObject: 4ed5705fcc4a5524b73a6b190b2fe1c78c30135a
+  Specta: eb90708ed77569bbda089f8ead10bb99b8e9489e
+
+COCOAPODS: 0.35.0

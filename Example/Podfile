@@ -2,6 +2,8 @@ source 'https://github.com/CocoaPods/Specs.git'
 
 target 'NSManagedObject-PFObject', :exclusive => true do
   pod "NSManagedObject-PFObject", :path => "../"
+  pod "Parse"
+  pod "ObjectiveRecord"
 end
 
 target 'Tests', :exclusive => true do
