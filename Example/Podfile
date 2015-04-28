@@ -1,0 +1,12 @@
+source 'https://github.com/CocoaPods/Specs.git'
+
+target 'NSManagedObject-PFObject', :exclusive => true do
+  pod "NSManagedObject-PFObject", :path => "../"
+end
+
+target 'Tests', :exclusive => true do
+  pod "NSManagedObject-PFObject", :path => "../"
+
+  pod 'Specta'
+  pod 'Expecta'
+end
