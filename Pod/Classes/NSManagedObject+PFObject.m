@@ -20,7 +20,10 @@
 	if( !self._pfObject ){
 		/// ローカルになければ作成してローカルにpin
 		NBULogVerbose(@"ローカルにPFObjectを作成します");
-		NSString* uuid = [[NSUUID UUID] UUIDString];
+		NSString* uuid = [self valueForKey:@"uuid"];
+		if( !uuid ){
+			uuid = [[NSUUID UUID] UUIDString];
+		}
 		self._pfObject = [PFObject objectWithClassName:@"Thread"];
 		self._pfObject[@"uuid"] = uuid;
 		[self._pfObject pinInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {}];/// 次回以降の起動でクエリできるように
