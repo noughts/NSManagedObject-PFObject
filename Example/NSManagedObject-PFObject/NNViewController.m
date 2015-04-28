@@ -7,23 +7,36 @@
 //
 
 #import "NNViewController.h"
+// :: Framework ::
+#import <NBULog.h>
+#import <NSManagedObject+PFObject.h>
+#import <ObjectiveRecord.h>
+#import <Parse.h>
+// :: Other ::
+#import "Thread.h"
 
-@interface NNViewController ()
-
-@end
 
 @implementation NNViewController
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
+
+	Thread* thread = [Thread create];
+	NBULogDebug(@"%@", thread.pfobject);
+	NBULogDebug(@"%@", thread.pfobject);
+	[thread save];
+	
+	NBULogVerbose(@"---------------------------");
+	
+	NSArray* threads = [Thread all];
+	for (Thread* thread in threads) {
+		NBULogDebug(@"%@", thread.pfobject);
+		thread.pfobject[@"hoge"] = @"fuga";
+		[thread.pfobject saveEventually];
+	}
+	
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
 
 @end

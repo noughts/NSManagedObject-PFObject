@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		4D1B19231AEF6EB30098F230 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4D1B19211AEF6EB30098F230 /* Model.xcdatamodeld */; };
 		4D1B19251AEF6EF90098F230 /* README in Resources */ = {isa = PBXBuildFile; fileRef = 4D1B19241AEF6EF90098F230 /* README */; };
+		4D1B192B1AEF6FD70098F230 /* _Thread.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D1B19281AEF6FD70098F230 /* _Thread.m */; };
+		4D1B192C1AEF6FD70098F230 /* Thread.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D1B192A1AEF6FD70098F230 /* Thread.m */; };
 		6003F58E195388D20070C39A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58D195388D20070C39A /* Foundation.framework */; };
 		6003F590195388D20070C39A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58F195388D20070C39A /* CoreGraphics.framework */; };
 		6003F592195388D20070C39A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F591195388D20070C39A /* UIKit.framework */; };
@@ -42,6 +44,10 @@
 		49EBD5FD5BA5B4B53E8A1230 /* Pods-NSManagedObject-PFObject.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NSManagedObject-PFObject.release.xcconfig"; path = "Pods/Target Support Files/Pods-NSManagedObject-PFObject/Pods-NSManagedObject-PFObject.release.xcconfig"; sourceTree = "<group>"; };
 		4D1B19221AEF6EB30098F230 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		4D1B19241AEF6EF90098F230 /* README */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README; sourceTree = "<group>"; };
+		4D1B19271AEF6FD70098F230 /* _Thread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _Thread.h; sourceTree = "<group>"; };
+		4D1B19281AEF6FD70098F230 /* _Thread.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _Thread.m; sourceTree = "<group>"; };
+		4D1B19291AEF6FD70098F230 /* Thread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Thread.h; sourceTree = "<group>"; };
+		4D1B192A1AEF6FD70098F230 /* Thread.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Thread.m; sourceTree = "<group>"; };
 		6003F58A195388D20070C39A /* NSManagedObject-PFObject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "NSManagedObject-PFObject.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6003F58D195388D20070C39A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		6003F58F195388D20070C39A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -110,6 +116,18 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		4D1B19261AEF6FC30098F230 /* .models */ = {
+			isa = PBXGroup;
+			children = (
+				4D1B19271AEF6FD70098F230 /* _Thread.h */,
+				4D1B19281AEF6FD70098F230 /* _Thread.m */,
+				4D1B19291AEF6FD70098F230 /* Thread.h */,
+				4D1B192A1AEF6FD70098F230 /* Thread.m */,
+			);
+			name = .models;
+			path = models;
+			sourceTree = "<group>";
+		};
 		6003F581195388D10070C39A = {
 			isa = PBXGroup;
 			children = (
@@ -147,6 +165,7 @@
 		6003F593195388D20070C39A /* NSManagedObject-PFObject */ = {
 			isa = PBXGroup;
 			children = (
+				4D1B19261AEF6FC30098F230 /* .models */,
 				6003F59C195388D20070C39A /* NNAppDelegate.h */,
 				6003F59D195388D20070C39A /* NNAppDelegate.m */,
 				6003F59F195388D20070C39A /* Main_iPhone.storyboard */,
@@ -369,9 +388,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				6003F59E195388D20070C39A /* NNAppDelegate.m in Sources */,
+				4D1B192B1AEF6FD70098F230 /* _Thread.m in Sources */,
 				6003F5A7195388D20070C39A /* NNViewController.m in Sources */,
 				6003F59A195388D20070C39A /* main.m in Sources */,
 				4D1B19231AEF6EB30098F230 /* Model.xcdatamodeld in Sources */,
+				4D1B192C1AEF6FD70098F230 /* Thread.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -1,12 +1,9 @@
 #import "Thread.h"
 
-@interface Thread ()
 
-// Private interface goes here.
-
-@end
-
-@implementation Thread
+@implementation Thread{
+	
+}
 
 // Custom logic goes here.
 
