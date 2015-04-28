@@ -9,19 +9,16 @@
 
 Pod::Spec.new do |s|
   s.name             = "NSManagedObject-PFObject"
-  s.version          = "0.1.0"
-  s.summary          = "A short description of NSManagedObject-PFObject."
+  s.version          = "1.0.0"
+  s.summary          = "hoge"
   s.description      = <<-DESC
-                       An optional longer description of NSManagedObject-PFObject
-
-                       * Markdown format.
-                       * Don't worry about the indent, we strip it!
+                       fuga
                        DESC
-  s.homepage         = "https://github.com/<GITHUB_USERNAME>/NSManagedObject-PFObject"
+  s.homepage         = "https://github.com/noughts/NSManagedObject-PFObject"
   # s.screenshots     = "www.example.com/screenshots_1", "www.example.com/screenshots_2"
   s.license          = 'MIT'
   s.author           = { "koichi yamamoto" => "koichi@dividual.jp" }
-  s.source           = { :git => "https://github.com/<GITHUB_USERNAME>/NSManagedObject-PFObject.git", :tag => s.version.to_s }
+  s.source           = { :git => "https://github.com/noughts/NSManagedObject-PFObject.git", :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
   s.platform     = :ios, '7.0'
