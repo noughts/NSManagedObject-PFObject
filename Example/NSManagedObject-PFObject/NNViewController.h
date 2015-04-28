@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface NNViewController : UIViewController
+@interface NNViewController : UITableViewController <UITableViewDataSource, UITableViewDelegate>
 
 @end

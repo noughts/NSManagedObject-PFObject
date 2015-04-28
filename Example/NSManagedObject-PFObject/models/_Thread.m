@@ -4,6 +4,7 @@
 #import "_Thread.h"
 
 const struct ThreadAttributes ThreadAttributes = {
+	.createdAt = @"createdAt",
 	.notificationEnabled = @"notificationEnabled",
 	.remoteId = @"remoteId",
 	.targetUserId = @"targetUserId",
@@ -44,6 +45,8 @@ const struct ThreadAttributes ThreadAttributes = {
 
 	return keyPaths;
 }
+
+@dynamic createdAt;
 
 @dynamic notificationEnabled;
 

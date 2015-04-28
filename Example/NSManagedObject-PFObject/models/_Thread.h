@@ -4,6 +4,7 @@
 @import CoreData;
 
 extern const struct ThreadAttributes {
+	__unsafe_unretained NSString *createdAt;
 	__unsafe_unretained NSString *notificationEnabled;
 	__unsafe_unretained NSString *remoteId;
 	__unsafe_unretained NSString *targetUserId;
@@ -18,6 +19,10 @@ extern const struct ThreadAttributes {
 + (NSString*)entityName;
 + (NSEntityDescription*)entityInManagedObjectContext:(NSManagedObjectContext*)moc_;
 @property (nonatomic, readonly, strong) ThreadID* objectID;
+
+@property (nonatomic, strong) NSDate* createdAt;
+
+//- (BOOL)validateCreatedAt:(id*)value_ error:(NSError**)error_;
 
 @property (nonatomic, strong) NSNumber* notificationEnabled;
 
@@ -42,6 +47,9 @@ extern const struct ThreadAttributes {
 @end
 
 @interface _Thread (CoreDataGeneratedPrimitiveAccessors)
+
+- (NSDate*)primitiveCreatedAt;
+- (void)setPrimitiveCreatedAt:(NSDate*)value;
 
 - (NSNumber*)primitiveNotificationEnabled;
 - (void)setPrimitiveNotificationEnabled:(NSNumber*)value;

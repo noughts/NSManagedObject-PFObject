@@ -18,25 +18,55 @@
 
 @implementation NNViewController
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad{
     [super viewDidLoad];
-
-	Thread* thread = [Thread create];
-	NBULogDebug(@"%@", thread.pfobject);
-	NBULogDebug(@"%@", thread.pfobject);
-	[thread save];
-	
-	NBULogVerbose(@"---------------------------");
-	
-	NSArray* threads = [Thread all];
-	for (Thread* thread in threads) {
-		NBULogDebug(@"%@", thread.pfobject);
-		thread.pfobject[@"hoge"] = @"fuga";
-		[thread.pfobject saveEventually];
-	}
-	
 }
+
+-(IBAction)onAddButtonTap:(id)sender{
+	Thread* thread = [Thread create];
+	[thread save];
+	[self.tableView reloadData];
+}
+
+-(IBAction)onRefreshButtonTap:(id)sender{
+	[self.tableView reloadData];
+}
+
+-(Thread*)threadAtIndexPath:(NSIndexPath*)indexPath{
+	NSArray* threads = [Thread all];
+	return threads[indexPath.row];
+}
+
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+	Thread* thread = [self threadAtIndexPath:indexPath];
+	[thread.pfobject saveEventually:^(BOOL succeeded, NSError *PF_NULLABLE_S error){
+		if( error ){
+			NBULogError(@"%@", error);
+		}
+		NBULogInfo(@"%@",thread.pfobject.objectId);
+		[self.tableView reloadData];
+	}];
+}
+
+
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+	return [Thread count];
+}
+
+-(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+	UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
+	
+	Thread* thread = [self threadAtIndexPath:indexPath];
+	
+	cell.textLabel.text = thread.uuid;
+	cell.detailTextLabel.text = thread.pfobject.objectId;
+	NBULogInfo(@"%@",thread.pfobject);
+	
+	return cell;
+}
+
+
 
 
 @end
