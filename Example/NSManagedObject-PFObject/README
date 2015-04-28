@@ -1,1 +1,1 @@
-mogenerator -O ParseLocalStoragePractice/models/ --v2 -m ParseLocalStoragePractice/Model.xcdatamodeld/
+mogenerator -O Example/NSManagedObject-PFObject/models/ --v2 -m Example/NSManagedObject-PFObject/Model.xcdatamodeld/
