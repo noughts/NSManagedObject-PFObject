@@ -7,12 +7,20 @@
 //
 
 #import "NNAppDelegate.h"
+#import <ObjectiveRecord.h>
+#import <Parse.h>
 
 @implementation NNAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    // Override point for customization after application launch.
+
+	[[CoreDataManager sharedManager] setModelName:@"Model"];
+	
+	[Parse enableLocalDatastore];
+	[Parse setApplicationId:@"V39vgrRKA9jPI4TxdrDas3vqE2JQRVXfZir9bzMA" clientKey:@"Zc40ic3Qqr9FHnCmuXP7VHxnCKu5BcymYoTcf9dm"];
+	[PFUser enableAutomaticUser];
+	
     return YES;
 }
 							

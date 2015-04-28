@@ -1,11 +1,24 @@
 PODS:
+  - Bolts (1.1.5):
+    - Bolts/AppLinks (= 1.1.5)
+    - Bolts/Tasks (= 1.1.5)
+  - Bolts/AppLinks (1.1.5):
+    - Bolts/Tasks
+  - Bolts/Tasks (1.1.5)
   - Expecta (0.4.2)
   - NSManagedObject-PFObject (0.1.0)
+  - ObjectiveRecord (1.5.0):
+    - ObjectiveSugar
+  - ObjectiveSugar (1.1.0)
+  - Parse (1.7.2):
+    - Bolts (~> 1.1)
   - Specta (0.5.0)
 
 DEPENDENCIES:
   - Expecta
   - NSManagedObject-PFObject (from `../`)
+  - ObjectiveRecord
+  - Parse
   - Specta
 
 EXTERNAL SOURCES:
@@ -13,8 +26,12 @@ EXTERNAL SOURCES:
     :path: ../
 
 SPEC CHECKSUMS:
+  Bolts: aac24961496d504aa56fc267cde95162a71bac39
   Expecta: 78b4e8b0c8291fa4524d7f74016b6065c2e391ec
   NSManagedObject-PFObject: 4ed5705fcc4a5524b73a6b190b2fe1c78c30135a
+  ObjectiveRecord: f290d17272e476b3c881300910e98284200c54b6
+  ObjectiveSugar: a6a25f23d657c19df0a0b972466d5b5ca9f5295c
+  Parse: e1959adb9fe2fcd4736dac20b3ac691d47a4f06c
   Specta: eb90708ed77569bbda089f8ead10bb99b8e9489e
 
 COCOAPODS: 0.35.0
