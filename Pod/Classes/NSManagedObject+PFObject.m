@@ -34,32 +34,38 @@
 }
 
 
-
 -(PFObject*)pfobject{
+	if( self._pfObject ){
+		NBULogVerbose(@"メモリ上にあったPFObjectを返します");
+		return self._pfObject;
+	}
+	
 	NSString* className = NSStringFromClass([self class]);
 	NSString* objectId = [self valueForKeyWithSuppressException:@"remoteId"];
 	
 	if( objectId ){
-		return [PFObject objectWithoutDataWithClassName:className objectId:objectId];
+		NBULogVerbose(@"remoteIdがすでにDBにあるので、それからPointerを作成して返します");
+		self._pfObject = [PFObject objectWithoutDataWithClassName:className objectId:objectId];
+		return self._pfObject;
 	}
 	
-	if( !self._pfObject ){
-		/// メモリに乗ってなければローカルをクエリしてみる
-		self._pfObject = [self queryLocalPFObject];
+
+	self._pfObject = [self queryLocalPFObject];
+	if( self._pfObject ){
+		NBULogVerbose(@"ローカルストレージにPFObjectが見つかったので返します");
+		return self._pfObject;
 	}
 	
-	if( !self._pfObject ){
-		/// ローカルになければ作成してローカルにpin
-		NBULogVerbose(@"ローカルにPFObjectを作成します");
-		NSString* uuid = [self valueForKeyWithSuppressException:@"uuid"];
-		if( !uuid ){
-			uuid = [[NSUUID UUID] UUIDString];
-		}
-		self._pfObject = [PFObject objectWithClassName:className];
-		self._pfObject[@"uuid"] = uuid;
-		[self._pfObject pinInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {}];/// 次回以降の起動でクエリできるように
-		[self setValueWithSuppressException:uuid forKey:@"uuid"];
+	/// ローカルストレージになければ作成してローカルストレージにpin
+	NBULogVerbose(@"ローカルストレージにPFObjectを作成します");
+	NSString* uuid = [self valueForKeyWithSuppressException:@"uuid"];
+	if( !uuid ){
+		uuid = [[NSUUID UUID] UUIDString];
 	}
+	self._pfObject = [PFObject objectWithClassName:className];
+	self._pfObject[@"uuid"] = uuid;
+	[self._pfObject pin];// 次回以降の呼び出しででクエリできるように
+	[self setValueWithSuppressException:uuid forKey:@"uuid"];
 	return self._pfObject;
 }
 
@@ -70,12 +76,12 @@
 	if( !uuid ){
 		return nil;
 	}
-	NBULogVerbose(@"ローカルをクエリします");
 	PFQuery* query = [PFQuery queryWithClassName:className];
 	[query fromLocalDatastore];
 	[query whereKey:@"uuid" equalTo:uuid];
-	return [query getFirstObject];// バックグラウンドで行うと処理が複雑になるので、メインスレッドで。
+	return [query getFirstObject];
 }
+
 
 
 

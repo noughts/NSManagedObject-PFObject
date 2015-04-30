@@ -18,7 +18,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Ll-sO-GTy">
-                                <rect key="frame" x="137" y="203" width="39" height="30"/>
+                                <rect key="frame" x="146" y="94" width="39" height="30"/>
                                 <state key="normal" title="変更1">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -27,12 +27,21 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kmd-d2-88k">
-                                <rect key="frame" x="137" y="401" width="39" height="30"/>
+                                <rect key="frame" x="146" y="223" width="39" height="30"/>
                                 <state key="normal" title="変更2">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <action selector="onChange2ButtonTap:" destination="2Wx-Nb-mGt" eventType="touchUpInside" id="1QY-0E-QCO"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Rg-yb-y7K">
+                                <rect key="frame" x="137" y="380" width="57" height="30"/>
+                                <state key="normal" title="変更1+2">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="onBothButtonTap:" destination="2Wx-Nb-mGt" eventType="touchUpInside" id="xJN-Du-Xhy"/>
                                 </connections>
                             </button>
                         </subviews>

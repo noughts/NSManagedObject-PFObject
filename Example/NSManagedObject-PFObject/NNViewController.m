@@ -47,4 +47,11 @@
 	[_thread.pfobject saveEventually];
 }
 
+
+-(IBAction)onBothButtonTap:(id)sender{
+	_thread.pfobject[@"hoge"] = @"fuga";
+	_thread.pfobject[@"piyo"] = @"baga";
+	[_thread.pfobject saveEventually];
+}
+
 @end
