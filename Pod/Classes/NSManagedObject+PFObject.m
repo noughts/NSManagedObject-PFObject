@@ -51,28 +51,46 @@
 		return;
 	}
 	
-	[self queryLocalPFObjectInBackground:^(PFObject *object) {
-		self._pfObject = object;
-		if( self._pfObject ){
-			NBULogVerbose(@"ローカルストレージにPFObjectが見つかったので返します");
-			completion( self._pfObject );
-			return;
+	
+	
+	dispatch_async(dispatch_get_global_queue(0, 0), ^{
+		
+		while (self._processing) {
+//			NBULogVerbose( @"PFObject取得処理中なので待機します" );
 		}
 		
-		/// ローカルストレージになければ作成してローカルストレージにpin
-		NBULogVerbose(@"ローカルストレージにPFObjectを作成します");
-		NSString* uuid = [self valueForKeyWithSuppressException:@"uuid"];
-		if( !uuid ){
-			uuid = [[NSUUID UUID] UUIDString];
-		}
-		self._pfObject = [PFObject objectWithClassName:className];
-		self._pfObject[@"uuid"] = uuid;
-		[self._pfObject pinInBackgroundWithBlock:^(BOOL succeeded, NSError *PF_NULLABLE_S error){
-			[self setValueWithSuppressException:uuid forKey:@"uuid"];
-			[self.managedObjectContext save:nil];
-			completion( self._pfObject );
-		}];
-	}];
+		self._processing = YES;
+		
+		dispatch_async(dispatch_get_main_queue(), ^{
+			[self queryLocalPFObjectInBackground:^(PFObject *object) {
+				self._pfObject = object;
+				if( self._pfObject ){
+					NBULogVerbose(@"ローカルストレージにPFObjectが見つかったので返します");
+					self._processing = NO;
+					completion( self._pfObject );
+					return;
+				}
+				
+				/// ローカルストレージになければ作成してローカルストレージにpin
+				NBULogVerbose(@"ローカルストレージにPFObjectを作成します");
+				NSString* uuid = [self valueForKeyWithSuppressException:@"uuid"];
+				if( !uuid ){
+					uuid = [[NSUUID UUID] UUIDString];
+				}
+				self._pfObject = [PFObject objectWithClassName:className];
+				self._pfObject[@"uuid"] = uuid;
+				[self._pfObject pinInBackgroundWithBlock:^(BOOL succeeded, NSError *PF_NULLABLE_S error){
+					[self setValueWithSuppressException:uuid forKey:@"uuid"];
+					[self.managedObjectContext save:nil];
+					self._processing = NO;
+					completion( self._pfObject );
+				}];
+			}];
+		});
+	});
+	
+	
+
 }
 
 
