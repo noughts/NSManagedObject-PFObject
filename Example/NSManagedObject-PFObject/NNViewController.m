@@ -31,27 +31,38 @@
 		_thread.uuid = uuid;
 		[_thread save];
 	}
+	
 	NSLog( @"%@", _thread );
 	
 }
 
 
 -(IBAction)onChange1ButtonTap:(id)sender{
-	_thread.pfobject[@"hoge"] = @"fuga";
-	[_thread.pfobject saveEventually];
+	[_thread getPFObjectInBackground:^(PFObject *object) {
+		object[@"hoge"] = @"fuga";
+		[object saveEventually];
+	}];
+
 }
 
 
 -(IBAction)onChange2ButtonTap:(id)sender{
-	_thread.pfobject[@"piyo"] = @"baga";
-	[_thread.pfobject saveEventually];
+	[_thread getPFObjectInBackground:^(PFObject *object) {
+		object[@"piyo"] = @"baga";
+		[object saveEventually];
+	}];
 }
 
 
 -(IBAction)onBothButtonTap:(id)sender{
-	_thread.pfobject[@"hoge"] = @"fuga";
-	_thread.pfobject[@"piyo"] = @"baga";
-	[_thread.pfobject saveEventually];
+	[_thread getPFObjectInBackground:^(PFObject *object) {
+		object[@"hoge"] = @"fuga";
+		[object saveEventually];
+	}];
+	[_thread getPFObjectInBackground:^(PFObject *object) {
+		object[@"piyo"] = @"baga";
+		[object saveEventually];
+	}];
 }
 
 @end
