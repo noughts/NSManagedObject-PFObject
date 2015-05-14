@@ -9,7 +9,7 @@
 
 Pod::Spec.new do |s|
   s.name             = "NSManagedObject-PFObject"
-  s.version          = "1.0.1"
+  s.version          = "1.1.0"
   s.summary          = "hoge"
   s.description      = <<-DESC
                        fuga
