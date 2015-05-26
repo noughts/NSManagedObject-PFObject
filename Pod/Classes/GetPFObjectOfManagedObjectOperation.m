@@ -26,7 +26,7 @@
 	}
 	return [super automaticallyNotifiesObserversForKey:key];
 }
-// YES を返さないとメインスレッド以外で動かなくなる
+
 - (BOOL)isConcurrent {
 	return YES;
 }
@@ -36,8 +36,20 @@
 - (BOOL)isFinished {
 	return isFinished;
 }
-- (id)initWithCompletion:(void (^)(PFObject* object))completion{
+
+
+/// operationを終わらせる
+-(void)finish{
+	[self setValue:@(NO) forKey:@"isExecuting"];
+	[self setValue:@(YES) forKey:@"isFinished"];
+}
+
+
+
+
+- (instancetype)initWithManagedObject:(NSManagedObject*)managedObject completion:(void (^)(PFObject* object))completion{
 	if (self = [super init]) {
+		_managedObject = managedObject;
 		_completion = completion;
 	}
 	isExecuting = NO;
@@ -47,46 +59,53 @@
 
 
 - (void)start {
-	if( _managedObject._pfObject ){
-		NBULogVerbose(@"メモリ上にあったPFObjectを返します");
-		_completion( _managedObject._pfObject );
-		return;
-	}
-	
-	NSString* className = NSStringFromClass([self class]);
-	NSString* objectId = [_managedObject valueForKeyWithSuppressException:@"remoteId"];
-	
-	if( objectId ){
-		NBULogVerbose(@"remoteIdがすでにDBにあるので、それからPointerを作成して返します");
-		_managedObject._pfObject = [PFObject objectWithoutDataWithClassName:className objectId:objectId];
-		_completion( _managedObject._pfObject );
-		return;
-	}
-	
-	
-	[self queryLocalPFObjectInBackground:^(PFObject *object) {
-		_managedObject._pfObject = object;
-		if( object ){
-			NBULogVerbose(@"ローカルストレージにPFObjectが見つかったので返します");
-			_completion( object);
+	NBULogVerbose(@"start");
+	[self setValue:@(YES) forKey:@"isExecuting"];
+	[[NSOperationQueue mainQueue] addOperationWithBlock:^{
+		if( _managedObject._pfObject ){
+			NBULogVerbose(@"メモリ上にあったPFObjectを返します");
+			_completion( _managedObject._pfObject );
+			[self finish];
 			return;
 		}
 		
-		/// ローカルストレージになければ作成してローカルストレージにpin
-		NBULogVerbose(@"ローカルストレージにPFObjectを作成します");
-		NSString* uuid = [_managedObject valueForKeyWithSuppressException:@"uuid"];
-		if( !uuid ){
-			uuid = [[NSUUID UUID] UUIDString];
-		}
-		_managedObject._pfObject = [PFObject objectWithClassName:className];
-		_managedObject._pfObject[@"uuid"] = uuid;
-		[_managedObject._pfObject pinInBackgroundWithBlock:^(BOOL succeeded, NSError *PF_NULLABLE_S error){
-			[_managedObject setValueWithSuppressException:uuid forKey:@"uuid"];
-			[_managedObject.managedObjectContext save:nil];
+		NSString* className = NSStringFromClass([self class]);
+		NSString* objectId = [_managedObject valueForKeyWithSuppressException:@"remoteId"];
+		
+		if( objectId ){
+			NBULogVerbose(@"remoteIdがすでにDBにあるので、それからPointerを作成して返します");
+			_managedObject._pfObject = [PFObject objectWithoutDataWithClassName:className objectId:objectId];
 			_completion( _managedObject._pfObject );
+			[self finish];
+			return;
+		}
+		
+		
+		[self queryLocalPFObjectInBackground:^(PFObject *object) {
+			_managedObject._pfObject = object;
+			if( object ){
+				NBULogVerbose(@"ローカルストレージにPFObjectが見つかったので返します");
+				_completion( object);
+				[self finish];
+				return;
+			}
+			
+			/// ローカルストレージになければ作成してローカルストレージにpin
+			NBULogVerbose(@"ローカルストレージにPFObjectを作成します");
+			NSString* uuid = [_managedObject valueForKeyWithSuppressException:@"uuid"];
+			if( !uuid ){
+				uuid = [[NSUUID UUID] UUIDString];
+			}
+			_managedObject._pfObject = [PFObject objectWithClassName:className];
+			_managedObject._pfObject[@"uuid"] = uuid;
+			[_managedObject._pfObject pinInBackgroundWithBlock:^(BOOL succeeded, NSError *PF_NULLABLE_S error){
+				[_managedObject setValueWithSuppressException:uuid forKey:@"uuid"];
+				[_managedObject.managedObjectContext save:nil];
+				_completion( _managedObject._pfObject );
+				[self finish];
+			}];
 		}];
-	}];
-	
+	}];	
 }
 
 

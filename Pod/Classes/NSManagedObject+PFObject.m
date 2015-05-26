@@ -10,6 +10,7 @@
 #import <objc/runtime.h>
 // :: Other ::
 #import "NSManagedObject+PFObject.h"
+#import "GetPFObjectOfManagedObjectOperation.h"
 
 
 static NSOperationQueue* _managedObjectPfObjectQuery_queue;
@@ -41,6 +42,8 @@ static NSOperationQueue* _managedObjectPfObjectQuery_queue;
 		_managedObjectPfObjectQuery_queue.maxConcurrentOperationCount = 1;
 	}
 	
+	GetPFObjectOfManagedObjectOperation* op = [[GetPFObjectOfManagedObjectOperation alloc] initWithManagedObject:self completion:completion];
+	[_managedObjectPfObjectQuery_queue addOperation:op];
 }
 
 

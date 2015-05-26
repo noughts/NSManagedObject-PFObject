@@ -14,8 +14,6 @@
 
 @implementation PracticeOperation{
 	PFArrayResultBlock _block;
-	NSURL *url;
-	NSMutableData *responseData;
 	BOOL isExecuting, isFinished;
 }
 // 監視するキー値の設定
@@ -42,19 +40,11 @@
 	if( self = [super init] ){
 		_block = block;
 	}
-	return self;
-}
-
-
-- (id)initWithURL:(NSURL *)targetUrl{
-	self = [super init];
-	if (self) {
-		url = targetUrl;
-	}
 	isExecuting = NO;
 	isFinished = NO;
 	return self;
 }
+
 
 
 - (void)start {

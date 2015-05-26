@@ -11,7 +11,6 @@
 
 @interface PracticeOperation : NSOperation
 
-- (id)initWithURL:(NSURL *)targetUrl;
 -(instancetype)initWithBlock:(PFArrayResultBlock)block;
 
 @end

@@ -9,9 +9,10 @@
 // :: Framework ::
 #import <Foundation/Foundation.h>
 #import <Parse.h>
+@import CoreData;
 
 @interface GetPFObjectOfManagedObjectOperation : NSOperation
 
-- (id)initWithCompletion:(void (^)(PFObject* object))completion;
+- (instancetype)initWithManagedObject:(NSManagedObject*)managedObject completion:(void (^)(PFObject* object))completion;
 
 @end

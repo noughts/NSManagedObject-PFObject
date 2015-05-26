@@ -36,7 +36,7 @@
 	NSLog( @"%@", _thread );
 	
 	
-	
+	/*
 	NSOperationQueue* queue = [NSOperationQueue new];
 	queue.maxConcurrentOperationCount = 1;
 	
@@ -49,6 +49,7 @@
 	[queue addOperation:[[PracticeOperation alloc] initWithBlock:^(NSArray * __nullable objects, NSError * __nullable error) {
 		NBULogVerbose(@"%@",error);
 	}]];
+	 */
 }
 
 
