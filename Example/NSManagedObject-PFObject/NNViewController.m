@@ -13,6 +13,7 @@
 #import <ObjectiveRecord.h>
 #import <Parse.h>
 // :: Other ::
+#import "PracticeOperation.h"
 #import "Thread.h"
 
 
@@ -33,6 +34,15 @@
 	}
 	
 	NSLog( @"%@", _thread );
+	
+	
+	
+	NSOperationQueue* queue = [NSOperationQueue new];
+	queue.maxConcurrentOperationCount = 1;
+	
+	[queue addOperation:[[PracticeOperation alloc] initWithURL:[NSURL URLWithString:@"http://d.hatena.ne.jp/glass-_-onion/20110706/1309909082"]]];
+	[queue addOperation:[[PracticeOperation alloc] initWithURL:[NSURL URLWithString:@"http://d.hatena.ne.jp/glass-_-onion/20110706/1309909082"]]];
+	[queue addOperation:[[PracticeOperation alloc] initWithURL:[NSURL URLWithString:@"http://d.hatena.ne.jp/glass-_-onion/20110706/1309909082"]]];
 	
 }
 

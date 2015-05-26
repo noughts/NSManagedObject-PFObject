@@ -10,4 +10,6 @@
 
 @interface PracticeOperation : NSOperation
 
+- (id)initWithURL:(NSURL *)targetUrl;
+
 @end

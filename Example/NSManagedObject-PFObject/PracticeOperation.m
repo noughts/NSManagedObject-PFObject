@@ -7,6 +7,10 @@
 //
 
 #import "PracticeOperation.h"
+// :: Framework ::
+#import <NBULog.h>
+#import <Parse.h>
+
 
 @implementation PracticeOperation{
 	NSURL *url;
@@ -31,6 +35,11 @@
 - (BOOL)isFinished {
 	return isFinished;
 }
+
+
+
+
+
 - (id)initWithURL:(NSURL *)targetUrl {
 	self = [super init];
 	if (self) {
@@ -43,35 +52,16 @@
 
 
 - (void)start {
-	[self setValue:[NSNumber numberWithBool:YES] forKey:@"isExecuting"];
-	NSURLRequest *request = [NSURLRequest requestWithURL:url];
-	NSURLConnection *conn = [NSURLConnection connectionWithRequest:request delegate:self];
-	if (conn != nil) {
-		// NSURLConnection は RunLoop をまわさないとメインスレッド以外で動かない
-		do {
-			[[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate distantFuture]];
-		} while (isExecuting);
-	}
+	NBULogVerbose(@"start");
+	[self setValue:@(YES) forKey:@"isExecuting"];
+
+	PFQuery* query = [PFQuery queryWithClassName:@"TestObject"];
+	[query findObjectsInBackgroundWithBlock:^(NSArray *PF_NULLABLE_S objects, NSError *PF_NULLABLE_S error){
+		NBULogVerbose(@"complete");
+		[self setValue:@(NO) forKey:@"isExecuting"];
+		[self setValue:@(YES) forKey:@"isFinished"];
+	}];
+
 }
-// レスポンスヘッダ受け取り
-- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
-	responseData = [[NSMutableData alloc] init];
-}
-// データの受け取り
-- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
-	[responseData appendData:data];
-}
-// 通信エラー
-- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
-	NSLog(@"%@", @"エラー");
-	[self setValue:[NSNumber numberWithBool:NO] forKey:@"isExecuting"];
-	[self setValue:[NSNumber numberWithBool:YES] forKey:@"isFinished"];
-}
-// 通信終了
-- (void)connectionDidFinishLoading:(NSURLConnection *)connection {
-	NSString *responseString = [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding];
-	NSLog(@"%@", responseString);
-	[self setValue:[NSNumber numberWithBool:NO] forKey:@"isExecuting"];
-	[self setValue:[NSNumber numberWithBool:YES] forKey:@"isFinished"];
-}
+
 @end
