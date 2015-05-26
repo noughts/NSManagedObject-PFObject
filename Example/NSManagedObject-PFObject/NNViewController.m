@@ -40,10 +40,15 @@
 	NSOperationQueue* queue = [NSOperationQueue new];
 	queue.maxConcurrentOperationCount = 1;
 	
-	[queue addOperation:[[PracticeOperation alloc] initWithURL:[NSURL URLWithString:@"http://d.hatena.ne.jp/glass-_-onion/20110706/1309909082"]]];
-	[queue addOperation:[[PracticeOperation alloc] initWithURL:[NSURL URLWithString:@"http://d.hatena.ne.jp/glass-_-onion/20110706/1309909082"]]];
-	[queue addOperation:[[PracticeOperation alloc] initWithURL:[NSURL URLWithString:@"http://d.hatena.ne.jp/glass-_-onion/20110706/1309909082"]]];
-	
+	[queue addOperation:[[PracticeOperation alloc] initWithBlock:^(NSArray * __nullable objects, NSError * __nullable error) {
+		NBULogVerbose(@"%@",error);
+	}]];
+	[queue addOperation:[[PracticeOperation alloc] initWithBlock:^(NSArray * __nullable objects, NSError * __nullable error) {
+		NBULogVerbose(@"%@",error);
+	}]];
+	[queue addOperation:[[PracticeOperation alloc] initWithBlock:^(NSArray * __nullable objects, NSError * __nullable error) {
+		NBULogVerbose(@"%@",error);
+	}]];
 }
 
 

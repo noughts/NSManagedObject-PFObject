@@ -13,6 +13,7 @@
 
 
 @implementation PracticeOperation{
+	PFArrayResultBlock _block;
 	NSURL *url;
 	NSMutableData *responseData;
 	BOOL isExecuting, isFinished;
@@ -37,10 +38,15 @@
 }
 
 
+-(instancetype)initWithBlock:(PFArrayResultBlock)block{
+	if( self = [super init] ){
+		_block = block;
+	}
+	return self;
+}
 
 
-
-- (id)initWithURL:(NSURL *)targetUrl {
+- (id)initWithURL:(NSURL *)targetUrl{
 	self = [super init];
 	if (self) {
 		url = targetUrl;
@@ -58,8 +64,10 @@
 	PFQuery* query = [PFQuery queryWithClassName:@"TestObject"];
 	[query findObjectsInBackgroundWithBlock:^(NSArray *PF_NULLABLE_S objects, NSError *PF_NULLABLE_S error){
 		NBULogVerbose(@"complete");
+		_block( objects, error );
 		[self setValue:@(NO) forKey:@"isExecuting"];
 		[self setValue:@(YES) forKey:@"isFinished"];
+		
 	}];
 
 }

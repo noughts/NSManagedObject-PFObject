@@ -7,9 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <Parse.h>
 
 @interface PracticeOperation : NSOperation
 
 - (id)initWithURL:(NSURL *)targetUrl;
+-(instancetype)initWithBlock:(PFArrayResultBlock)block;
 
 @end

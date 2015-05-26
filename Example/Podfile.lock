@@ -11,13 +11,13 @@ PODS:
   - Expecta (1.0.0)
   - NBULog (1.2.4):
     - CocoaLumberjack (>= 2.0.0)
-  - NSManagedObject-PFObject (1.0.1):
+  - NSManagedObject-PFObject (1.1.0):
     - NBULog
     - Parse
   - ObjectiveRecord (1.5.0):
     - ObjectiveSugar
   - ObjectiveSugar (1.1.0)
-  - Parse (1.7.2.2):
+  - Parse (1.7.4):
     - Bolts/Tasks (>= 1.1.5)
   - Specta (1.0.0)
 
@@ -37,10 +37,10 @@ SPEC CHECKSUMS:
   CocoaLumberjack: a6f77d987d65dc7ba86b0f84db7d0b9084f77bcb
   Expecta: 32604574add2c46a36f8d2f716b6c5736eb75024
   NBULog: 4003be6706b97a7e376ab4171c666ac7c2fbc2b2
-  NSManagedObject-PFObject: b2afbf2e58ea1730aa4967630b3780fd46d54737
+  NSManagedObject-PFObject: 9e4532faa5724505d2968028fb2962700bc09654
   ObjectiveRecord: f290d17272e476b3c881300910e98284200c54b6
   ObjectiveSugar: a6a25f23d657c19df0a0b972466d5b5ca9f5295c
-  Parse: 6187586a80eb7b4960d755f85e1353148a611f87
+  Parse: 6ca512c6e860b66739c95151b2f76ac4712b7842
   Specta: 96fe05fe5c7348b5223f85e862904f6e832abb14
 
 COCOAPODS: 0.35.0
