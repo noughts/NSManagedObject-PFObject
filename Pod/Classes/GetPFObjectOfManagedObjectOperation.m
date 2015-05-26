@@ -69,7 +69,7 @@
 			return;
 		}
 		
-		NSString* className = NSStringFromClass([self class]);
+		NSString* className = NSStringFromClass([_managedObject class]);
 		NSString* objectId = [_managedObject valueForKeyWithSuppressException:@"remoteId"];
 		
 		if( objectId ){
