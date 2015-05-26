@@ -11,6 +11,7 @@
 		4D1B19251AEF6EF90098F230 /* README in Resources */ = {isa = PBXBuildFile; fileRef = 4D1B19241AEF6EF90098F230 /* README */; };
 		4D1B192B1AEF6FD70098F230 /* _Thread.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D1B19281AEF6FD70098F230 /* _Thread.m */; };
 		4D1B192C1AEF6FD70098F230 /* Thread.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D1B192A1AEF6FD70098F230 /* Thread.m */; };
+		4DD75C3D1B14299C00881EC4 /* PracticeOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DD75C3C1B14299C00881EC4 /* PracticeOperation.m */; };
 		6003F58E195388D20070C39A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58D195388D20070C39A /* Foundation.framework */; };
 		6003F590195388D20070C39A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58F195388D20070C39A /* CoreGraphics.framework */; };
 		6003F592195388D20070C39A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F591195388D20070C39A /* UIKit.framework */; };
@@ -47,6 +48,8 @@
 		4D1B19281AEF6FD70098F230 /* _Thread.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _Thread.m; sourceTree = "<group>"; };
 		4D1B19291AEF6FD70098F230 /* Thread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Thread.h; sourceTree = "<group>"; };
 		4D1B192A1AEF6FD70098F230 /* Thread.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Thread.m; sourceTree = "<group>"; };
+		4DD75C3B1B14299C00881EC4 /* PracticeOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PracticeOperation.h; sourceTree = "<group>"; };
+		4DD75C3C1B14299C00881EC4 /* PracticeOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PracticeOperation.m; sourceTree = "<group>"; };
 		6003F58A195388D20070C39A /* NSManagedObject-PFObject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "NSManagedObject-PFObject.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6003F58D195388D20070C39A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		6003F58F195388D20070C39A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -164,15 +167,17 @@
 			isa = PBXGroup;
 			children = (
 				4D1B19261AEF6FC30098F230 /* .models */,
+				6003F5A8195388D20070C39A /* Images.xcassets */,
+				6003F59F195388D20070C39A /* Main_iPhone.storyboard */,
+				4D1B19211AEF6EB30098F230 /* Model.xcdatamodeld */,
 				6003F59C195388D20070C39A /* NNAppDelegate.h */,
 				6003F59D195388D20070C39A /* NNAppDelegate.m */,
-				6003F59F195388D20070C39A /* Main_iPhone.storyboard */,
 				6003F5A5195388D20070C39A /* NNViewController.h */,
 				6003F5A6195388D20070C39A /* NNViewController.m */,
-				6003F5A8195388D20070C39A /* Images.xcassets */,
-				6003F594195388D20070C39A /* Supporting Files */,
-				4D1B19211AEF6EB30098F230 /* Model.xcdatamodeld */,
+				4DD75C3B1B14299C00881EC4 /* PracticeOperation.h */,
+				4DD75C3C1B14299C00881EC4 /* PracticeOperation.m */,
 				4D1B19241AEF6EF90098F230 /* README */,
+				6003F594195388D20070C39A /* Supporting Files */,
 			);
 			path = "NSManagedObject-PFObject";
 			sourceTree = "<group>";
@@ -385,6 +390,7 @@
 			files = (
 				6003F59E195388D20070C39A /* NNAppDelegate.m in Sources */,
 				4D1B192B1AEF6FD70098F230 /* _Thread.m in Sources */,
+				4DD75C3D1B14299C00881EC4 /* PracticeOperation.m in Sources */,
 				6003F5A7195388D20070C39A /* NNViewController.m in Sources */,
 				6003F59A195388D20070C39A /* main.m in Sources */,
 				4D1B19231AEF6EB30098F230 /* Model.xcdatamodeld in Sources */,
