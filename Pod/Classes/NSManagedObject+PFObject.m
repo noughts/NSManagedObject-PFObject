@@ -6,11 +6,12 @@
 
 // :: Framework ::
 #import <NBULog.h>
+#import <ObjectiveRecord.h>
 #import <Parse.h>
 #import <objc/runtime.h>
 // :: Other ::
-#import "NSManagedObject+PFObject.h"
 #import "GetPFObjectOfManagedObjectOperation.h"
+#import "NSManagedObject+PFObject.h"
 
 
 static NSOperationQueue* _managedObjectPfObjectQuery_queue;
@@ -36,24 +37,27 @@ static NSOperationQueue* _managedObjectPfObjectQuery_queue;
 }
 
 
--(void)getPFObjectInBackground:(void (^)(PFObject* object))completion{
+-(BOOL)getPFObjectInBackground:(void (^)(PFObject* object))completion{
 	if( !_managedObjectPfObjectQuery_queue ){
 		_managedObjectPfObjectQuery_queue = [NSOperationQueue new];
 		_managedObjectPfObjectQuery_queue.maxConcurrentOperationCount = 1;
 	}
 	
+	// もしremoteIdがすでにあれば、すぐにblock実行
+	NSString* remoteId = [self valueForKeyPath:@"remoteId"];
+	if( remoteId ){
+		NBULogVerbose(@"ローカルにremoteIdがあるのでそこからポインターPFObjectを作成して返します。");
+		NSString* className = NSStringFromClass([self class]);
+		completion( [PFObject objectWithoutDataWithClassName:className objectId:remoteId] );
+		return YES;
+	}
+	
+	
 	GetPFObjectOfManagedObjectOperation* op = [[GetPFObjectOfManagedObjectOperation alloc] initWithManagedObject:self completion:completion];
 	[_managedObjectPfObjectQuery_queue addOperation:op];
+	return NO;
 }
 
-
-
--(PFObject*)_pfObject {
-	return objc_getAssociatedObject(self, @selector(set_pfObject:));
-}
--(void)set_pfObject:(PFObject*)val {
-	objc_setAssociatedObject(self, _cmd, val, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-}
 
 
 

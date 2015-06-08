@@ -17,7 +17,7 @@
 
 	[[CoreDataManager sharedManager] setModelName:@"Model"];
 	
-	[Parse enableLocalDatastore];
+//	[Parse enableLocalDatastore];
 	[Parse setApplicationId:@"Jg3WocTLxmMSSr6a27I1005CaZmgahP6wQJdvySI" clientKey:@"bmXw20IZI64ODiRCZxPGoNw6xReuGAEBEwlLu37n"];
 	[PFUser enableAutomaticUser];
 	

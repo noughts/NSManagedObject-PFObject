@@ -33,4 +33,5 @@ Pod::Spec.new do |s|
   # s.frameworks = 'UIKit', 'MapKit'
   s.dependency "NBULog"
   s.dependency "Parse"
+  s.dependency "ObjectiveRecord"
 end
