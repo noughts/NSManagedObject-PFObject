@@ -74,6 +74,9 @@
 			return;
 		}
 		
+		/// リモート作成成功〜ローカルにremoteIdを保存の間にクラッシュするとリモートに重複オブジェクトが作成されてしまうため、作成前にuuidでqueryして重複チェックが必要かと思ったが、
+		/// getPFObject後にもろもろのプロパティを設定するため、そのクラッシュ時のPFObjectはただのゾンビオブジェクトになるので放置してもOKか？
+		
 		NBULogVerbose(@"%@をリモートに作成します...", className);
 		PFObject* object = [PFObject objectWithClassName:className];
 		[object saveInBackgroundWithBlock:^(BOOL succeeded, NSError *PF_NULLABLE_S error){
