@@ -8,7 +8,7 @@
 
 // :: Framework ::
 #import <Foundation/Foundation.h>
-#import <Parse.h>
+#import "Parse.h"
 @import CoreData;
 
 @interface GetPFObjectOfManagedObjectOperation : NSOperation

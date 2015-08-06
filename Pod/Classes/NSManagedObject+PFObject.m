@@ -5,9 +5,9 @@
  */
 
 // :: Framework ::
-#import <NBULog.h>
-#import <ObjectiveRecord.h>
-#import <Parse.h>
+#import "NBULogStub.h"
+#import "ObjectiveRecord.h"
+#import "Parse.h"
 #import <objc/runtime.h>
 // :: Other ::
 #import "GetPFObjectOfManagedObjectOperation.h"

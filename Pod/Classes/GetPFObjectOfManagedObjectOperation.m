@@ -7,9 +7,8 @@
 //
 
 #import "GetPFObjectOfManagedObjectOperation.h"
-// :: Framework ::
-#import <NBULog.h>
-#import <ObjectiveRecord.h>
+#import "ObjectiveRecord.h"
+#import "NBULogStub.h"
 // :: Other ::
 #import "NSManagedObject+PFObject.h"
 

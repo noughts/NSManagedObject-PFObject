@@ -1,32 +1,33 @@
 PODS:
   - Bolts/Tasks (1.2.0)
-  - CocoaLumberjack (2.0.0):
-    - CocoaLumberjack/Default (= 2.0.0)
-    - CocoaLumberjack/Extensions (= 2.0.0)
-  - CocoaLumberjack/Core (2.0.0)
-  - CocoaLumberjack/Default (2.0.0):
+  - CocoaLumberjack (2.0.1):
+    - CocoaLumberjack/Default (= 2.0.1)
+    - CocoaLumberjack/Extensions (= 2.0.1)
+  - CocoaLumberjack/Core (2.0.1)
+  - CocoaLumberjack/Default (2.0.1):
     - CocoaLumberjack/Core
-  - CocoaLumberjack/Extensions (2.0.0):
+  - CocoaLumberjack/Extensions (2.0.1):
     - CocoaLumberjack/Default
-  - Expecta (1.0.0)
+  - Expecta (1.0.2)
   - NBULog (1.2.4):
     - CocoaLumberjack (>= 2.0.0)
-  - NSManagedObject-PFObject (1.2.0):
-    - NBULog
+  - NBULogStub (0.1.2)
+  - NSManagedObject-PFObject (1.3.1):
+    - NBULogStub
     - ObjectiveRecord
     - Parse
   - ObjectiveRecord (1.5.0):
     - ObjectiveSugar
   - ObjectiveSugar (1.1.0)
-  - Parse (1.7.4):
-    - Bolts/Tasks (>= 1.1.5)
-  - Specta (1.0.1)
+  - Parse (1.7.5.3):
+    - Bolts/Tasks (>= 1.2.0)
+  - Specta (1.0.3)
 
 DEPENDENCIES:
   - Expecta
+  - NBULog
   - NSManagedObject-PFObject (from `../`)
   - ObjectiveRecord
-  - Parse
   - Specta
 
 EXTERNAL SOURCES:
@@ -35,13 +36,14 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   Bolts: d176cb1e0012175589e389a9db49b85e27787576
-  CocoaLumberjack: a6f77d987d65dc7ba86b0f84db7d0b9084f77bcb
-  Expecta: 32604574add2c46a36f8d2f716b6c5736eb75024
+  CocoaLumberjack: 019d1361244274a6138c788c6cb80baabc13fb8f
+  Expecta: 54e8a3530add08f4f0208c111355eda7cde74a53
   NBULog: 4003be6706b97a7e376ab4171c666ac7c2fbc2b2
-  NSManagedObject-PFObject: 755f8655c0aa6c5148ba39aeb71c7a68e1058072
+  NBULogStub: 398fa3535e3b368d6f1cb3b32c2ac0cb81cf350c
+  NSManagedObject-PFObject: 533881c38bf6ce022150a6dc54c1d52c9c59f3ad
   ObjectiveRecord: f290d17272e476b3c881300910e98284200c54b6
   ObjectiveSugar: a6a25f23d657c19df0a0b972466d5b5ca9f5295c
-  Parse: 6ca512c6e860b66739c95151b2f76ac4712b7842
-  Specta: 097be314a75de103703a3bf9a529dc1a398509d7
+  Parse: 373adbb1ad2e34d383542c3b28f678c49ebe4881
+  Specta: cf3e4188cf35375c3ee2cd03f8db8f1f4ef98234
 
-COCOAPODS: 0.35.0
+COCOAPODS: 0.38.2
